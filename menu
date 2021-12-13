@@ -1,0 +1,128 @@
+#!/bin/bash
+
+## Assignment: menu thing
+## Author: Tristan Werden
+## Version 1.0
+
+declare -i continueInt
+declare -ir TRUE=1
+declare -i menuChoice
+
+main() {
+    setContinueInt
+    while [ "$continueInt" -eq $TRUE ]
+    do
+            printMainMenu
+            case $menuChoice in
+                    
+                    1)
+                        echo -e "\nOption 1"
+                        optionOne
+                        ;;
+                    2)
+                        echo -e "\nOption 2"
+                        optionTwo
+                        ;;
+                    3)
+                        echo -e "\nOption 3"
+                        optionThree
+                        ;;
+                    4)
+                        echo -e "\nOption 4"
+                        ;;
+                    5)
+                        echo -e "\nOption 5"
+                        ;;
+                    6) 
+                        echo -e "\nOption 6"
+                        ;;
+            esac
+            setContinueInt
+    done
+
+}
+
+setContinueInt() { ## This is basically your exact continue with very minor changes. It was helpful for wrapping my head around syntax.
+    if [ -n "$continueInt" ]
+    then
+            continueInt=2
+            while [ $continueInt -gt $TRUE ] || [ $continueInt -lt 0 ]
+            do
+                    read -p "continue? (0-no,1-Yes): " continueInt
+                    sleep 1
+                    if [ $continueInt -gt $TRUE ] || [ $continueInt -lt 0 ]
+                    then
+                            echo -e "\nIncorrect input. Follow Instructions next time\n"
+                            sleep 1
+                            clear
+                    fi
+            done
+    else
+            continueInt=1
+    fi
+    echo "continueInt = $continueInt"
+}
+
+printMainMenu() {
+    echo -e "\n\n Make a Selection:\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nOption 6  "
+    read -p "Make a selection 1-6" menuChoice
+}
+
+optionOne(){
+declare -i subMenuChoice
+
+echo -e "\n\n Make a Selection:\nOption 1a (1)\nOption 1b (2)\nOption 1c (3)\n  "
+    read -p "Make a selection 1-3" subMenuChoice
+
+case $subMenuChoice in
+    1)
+            echo -e "\nOption 1a"
+            ;;
+    2)
+            echo -e "\nOption 1b"
+            ;;
+    3)
+            echo -e "\nOption 1c"
+            ;;
+esac
+}
+
+optionTwo(){
+declare -i subMenuChoice
+
+echo -e "\n\nMake a Selection:\nOption 2a (1)\nOption 2b (2)\nOption 2c (3)\n  "
+    read -p "Make a selection 1-3" subMenuChoice
+
+case $subMenuChoice in
+    1)
+            echo -e "\nOption 2a"
+            ;;
+    2)
+            echo -e "\nOption 2b"
+            ;;
+    3)
+            echo -e "\nOption 2c"
+            ;;
+esac
+}
+
+optionThree(){
+declare -i subMenuChoice
+
+echo -e "\n\nMake a Selection:\nOption 3a (1)\nOption 3b (2)\nOption 3c (3)\n  "
+    read -p "Make a selection 1-3" subMenuChoice
+
+case $subMenuChoice in
+    1)
+            echo -e "\nOption 3a"
+            ;;
+    2)
+            echo -e "\nOption 3b"
+            ;;
+    3)
+            echo -e "\nOption 3c"
+            ;;
+esac
+}
+
+main
